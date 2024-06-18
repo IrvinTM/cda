@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <label for="nota-guia1">Nota Guia 1</label>
+    <input id="nota-guia1" type="number">
+    <br><br>
+    <label for="nota-guia2">Nota Guia 2</label>
+    <input id="nota-guia2" type="number">
+    <br><br>
+    <label for="nota-guia3">Nota Guia 3</label>
+    <input id="nota-guia3" type="number">
+    <br><br>
+    <label for="nota-guia4">Nota Guia 4</label>
+    <input id="nota-guia4" type="number">
+    <br><br>
+    <label for="nota-guia5">Nota Guia 5</label>
+    <input id="nota-guia5" type="number">
+    <br><br>
+    <label for="nota-guia6">Nota Guia 6</label>
+    <input id="nota-guia6" type="number">
+    <br><br>
+    <label for="nota-parcial1">Nota Parcial 1</label>
+    <input id="nota-parcial1" type="number">
+    <br><br>
+    <label for="nota-parcial2">Nota Parcial 2</label>
+    <input id="nota-parcial2" type="number">
+    <br><br>
+    <label for="nota-parcial3">Nota Parcial 3</label>
+    <input id="nota-parcial3" type="number">
+    <br><br>
+    <label for="nota-caso">Nota caso de estudio</label>
+    <input id="nota-caso" type="number">
+    <br><br>
+    <label for="nota-lab1">Nota Lab 1</label>
+    <input id="nota-lab1" type="number">
+    <br><br>
+    <label for="nota-lab2">Nota Lab 2</label>
+    <input id="nota-lab2" type="number">
+    <br><br>
+    <label for="nota-lab3">Nota Lab 3</label>
+    <input id="nota-lab3" type="number">
+    <br><br>
+    <h2 id="nota-final"></h2>
+
+    <button onclick="mostrar()">Calcular</button>
+    
+    <script>
+        function notaParciales(parcial1, parcial2, parcial3) {
+            return ((parcial1 + parcial2 + parcial3) / 3) * 0.65;
+        }
+
+        function NotaCasoEstudio(caso) {
+            return caso * 0.10;
+        }
+
+        function notaLaboratorios(lab1, lab2, lab3) {
+            return ((lab1 + lab2 + lab3)/3) * 0.15;
+        }
+
+        function notaGuias(g1, g2, g3, g4, g5, g6) {
+            return ((g1 + g2 + g3 + g4 + g5 + g6) / 6) * 0.10;
+        }
+
+        function notaFinal(g1, g2, g3, g4, g5, g6, p1, p2, p3, caso, lab1, lab2, lab3) {
+            let guias = notaGuias(g1, g2, g3, g4, g5, g6);
+            let parciales = notaParciales(p1, p2, p3);
+            let casoEstudio = NotaCasoEstudio(caso);
+            let labs = notaLaboratorios(lab1, lab2, lab3);
+            return guias + parciales + casoEstudio + labs;
+        }
+
+        function mostrar() {
+            const inputGuia1 = parseFloat(document.getElementById('nota-guia1').value);
+            const inputGuia2 = parseFloat(document.getElementById('nota-guia2').value);
+            const inputGuia3 = parseFloat(document.getElementById('nota-guia3').value);
+            const inputGuia4 = parseFloat(document.getElementById('nota-guia4').value);
+            const inputGuia5 = parseFloat(document.getElementById('nota-guia5').value);
+            const inputGuia6 = parseFloat(document.getElementById('nota-guia6').value);
+            const inputParcial1 = parseFloat(document.getElementById('nota-parcial1').value);
+            const inputParcial2 = parseFloat(document.getElementById('nota-parcial2').value);
+            const inputParcial3 = parseFloat(document.getElementById('nota-parcial3').value);
+            const inputCaso = parseFloat(document.getElementById('nota-caso').value);
+            const inputLab1 = parseFloat(document.getElementById('nota-lab1').value);
+            const inputLab2 = parseFloat(document.getElementById('nota-lab2').value);
+            const inputLab3 = parseFloat(document.getElementById('nota-lab3').value);
+
+            const nota = notaFinal(inputGuia1, inputGuia2, inputGuia3, inputGuia4, inputGuia5, inputGuia6, inputParcial1, inputParcial2, inputParcial3, inputCaso, inputLab1, inputLab2, inputLab3);
+            document.getElementById('nota-final').innerHTML = 'Nota final: ' + nota.toFixed(2);
+        }
+    </script>
+    <style>
+
+        button {
+            padding: 10px;
+            background-color: #3498db;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #2980b9;
+        }
+
+        h2 {
+            font-size: 20px;
+        }
+
+        label {
+            font-size: 20px;
+            padding-right: 40px;
+        }
+        input {
+            font-size: 20px;
+        }
+
+        
+        
+
+    </style>
+</body>
+</html>
